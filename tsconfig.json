@@ -64,6 +64,10 @@
     "forceConsistentCasingInFileNames": true,
     "strictPropertyInitialization": false,
     "types": ["node"],
-    "outDir": "dist"
+    "outDir": "dist",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "moduleResolution": "node"
   }
 }

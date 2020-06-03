@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
 import { ApolloServer, IResolvers } from "apollo-server";
+const { models, db } = require("./db");
 
 const typeDefs = gql`
   type User {
@@ -15,7 +16,9 @@ const typeDefs = gql`
 
 const resolvers: IResolvers = {
   Query: {
-    me() {
+    async me(_, args, context) {
+      console.log(await context.db.pets.insert({ name: "Testing" }));
+      console.log(await context.db.pets.find({}));
       return {
         email: "yoda@masters.com",
         avatar: "Testing",
