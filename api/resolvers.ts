@@ -1,10 +1,17 @@
 export default {
   Query: {
-    pets(_, args, { models }) {
-      return models.Pet.findMany();
+    pets(_, { input }, { models }) {
+      return models.Pet.findMany({ ...input });
+    },
+    pet(_, { id }, { models }) {
+      return models.Pet.findOne({ id });
     },
   },
-  // Mutation: {},
+  Mutation: {
+    newPet(_, { input: { name, type } }, { models }) {
+      return models.Pet.create({ name, type });
+    },
+  },
   Pet: {},
   User: {},
 };

@@ -8,12 +8,27 @@ export default gql`
     type: String!
   }
 
+  input PetInput {
+    name: String
+    type: String
+  }
+
+  input NewPetInput {
+    name: String!
+    type: String!
+  }
+
   type User {
     id: ID!
     username: String!
   }
 
   type Query {
-    pets: [Pet]!
+    pets(input: PetInput): [Pet]!
+    pet(id: ID!): Pet!
+  }
+
+  type Mutation {
+    newPet(input: NewPetInput): Pet!
   }
 `;
