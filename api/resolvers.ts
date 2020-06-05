@@ -6,12 +6,23 @@ export default {
     pet(_, { id }, { models }) {
       return models.Pet.findOne({ id });
     },
-  },
-  Mutation: {
-    newPet(_, { input: { name, type } }, { models }) {
-      return models.Pet.create({ name, type });
+    user(_, { id }, { models }) {
+      return models.User.findOne({ id });
     },
   },
-  Pet: {},
-  User: {},
+  Mutation: {
+    newPet(_, { input: { name, type, user } }, { models }) {
+      return models.Pet.create({ name, type, user });
+    },
+  },
+  Pet: {
+    user(pet, args, { models }) {
+      return models.User.findOne({ id: pet.user });
+    },
+  },
+  User: {
+    pets(user, args, { models }) {
+      return models.Pet.findMany({ user: user.id });
+    },
+  },
 };

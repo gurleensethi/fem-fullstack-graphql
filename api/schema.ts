@@ -6,6 +6,7 @@ export default gql`
     name: String!
     createdAt: String!
     type: String!
+    user: User!
   }
 
   input PetInput {
@@ -16,16 +17,19 @@ export default gql`
   input NewPetInput {
     name: String!
     type: String!
+    user: Int!
   }
 
   type User {
     id: ID!
     username: String!
+    pets: [Pet]!
   }
 
   type Query {
     pets(input: PetInput): [Pet]!
     pet(id: ID!): Pet!
+    user(id: ID!): User!
   }
 
   type Mutation {

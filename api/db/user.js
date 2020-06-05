@@ -2,8 +2,8 @@ const nanoid = require("nanoid");
 
 const createUserModel = (db) => {
   return {
-    findOne() {
-      return db.get("user").value();
+    findOne(filter) {
+      return db.get("user").find(filter).value();
     },
 
     create(user) {
